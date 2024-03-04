@@ -1,37 +1,25 @@
-import fs from 'fs';
-import http from 'http';
-import axios from 'axios';
+import express from 'express';
+import languageRouter from './langugages/languages.js';
 
-const dataToWrite = 'Hello, world!';
-const PORT = 8000;
-
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end('<h1>Hello, world!</h1>');
-});
-
-server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
-
-axios.get(`http://google.com/`)
-    .then(response => {
-        fs.writeFile('google.html', response.data, (err) => {
-            if (err) throw err;
-            console.log('The HTML file has been saved!');
-        });
-    })
-    .catch(error => {
-        console.log('Error fetching Localhost:', error);
-    });
+const app = express()
+const port = 8000
 
 
-fs.writeFile('message.txt', dataToWrite, (err) => {
-    if (err) throw err;
-    console.log('The file has been saved!');
-});
+app.use(express.json())
+app.use(express.urlencoded({
+    extended: false
+}))
 
-fs.readFile('message.txt', 'utf8', (err, data) => {
-    if (err) throw err;
-    console.log(data);
-});
+app.listen(port, () => {
+    console.log('Bienvenue.')
+})
+
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+
+app.get('/test', (req, res) => {
+    res.send('Hello Test!')
+})
+
+app.use('/', languageRouter)
