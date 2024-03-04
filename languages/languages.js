@@ -1,6 +1,6 @@
-import express from 'express';
+import express from 'express'
 
-const languagesRouter = express.Router();
+const languagesRouter = express.Router()
 
 const languages = [
     { id: 1, name: 'Anglais', famille: 'Germanique' },
@@ -12,14 +12,14 @@ const languages = [
 languagesRouter
     // GET: Récupérer toutes les langues
     .get('/langues', (req, res) => {
-        res.json(languages);
+        res.json(languages)
     })
 
     // GET: Récupérer une langue par ID
     .get('/langues/:id', (req, res) => {
-        let { id } = req.params;
-        const langue = languages.find(langue => langue.id === parseInt(id));
-        res.json(langue);
+        let { id } = req.params
+        const langue = languages.find(langue => langue.id === parseInt(id))
+        res.json(langue)
     })
 
     // POST: Créer une nouvelle langue
@@ -29,26 +29,26 @@ languagesRouter
             name: req.body.name,
             famille: req.body.famille
         };
-        languages.push(langue);
-        res.json(langue);
+        languages.push(langue)
+        res.json(langue)
     })
 
     // PUT: Mettre à jour une langue par ID
     .put('/langues/:id', (req, res) => {
-        let { id } = req.params;
-        const langue = languages.find(langue => langue.id === parseInt(id));
-        langue.name = req.body.name;
-        langue.famille = req.body.famille;
-        res.json(langue);
+        let { id } = req.params
+        const langue = languages.find(langue => langue.id === parseInt(id))
+        langue.name = req.body.name
+        langue.famille = req.body.famille
+        res.json(langue)
     })
 
     // DELETE: Supprimer une langue par ID
     .delete('/langues/:id', (req, res) => {
-        let { id } = req.params;
-        const langue = languages.find(langue => langue.id === parseInt(id));
-        const langueId = languages.indexOf(langue);
-        languages.splice(langueId, 1);
-        res.json('Langue supprimée avec succès');
+        let { id } = req.params
+        const langue = languages.find(langue => langue.id === parseInt(id))
+        const langueId = languages.indexOf(langue)
+        languages.splice(langueId, 1)
+        res.json('Langue supprimée avec succès')
     });
 
 export default languagesRouter;
