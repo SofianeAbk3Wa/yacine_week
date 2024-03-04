@@ -14,9 +14,9 @@ server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
 
-axios.get(`http://localhost:${PORT}/`)
+axios.get(`http://google.com/`)
     .then(response => {
-        fs.writeFile('localhost.html', response.data, (err) => {
+        fs.writeFile('google_com.html', response.data, (err) => {
             if (err) throw err;
             console.log('The HTML file has been saved!');
         });
