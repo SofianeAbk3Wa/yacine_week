@@ -1,5 +1,5 @@
 import express from 'express';
-import languageRouter from './langugages/languages.js';
+import languageRouter from './languages/languages.js';
 
 const app = express()
 const port = 8000
