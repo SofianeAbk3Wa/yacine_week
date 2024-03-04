@@ -10,14 +10,20 @@ class LanguagesController {
 
     // GET: Récupérer toutes les langues
     getAllLanguages(req, res) {
-        res.json(this.languages);
+        res.render('languages', { languages: this.languages });
     }
+
 
     // GET: Récupérer une langue par ID
     getLanguageById(req, res) {
         let { id } = req.params;
         const langue = this.languages.find(langue => langue.id === parseInt(id));
         res.json(langue);
+    }
+
+    // GET: Afficher le formulaire pour ajouter une langue
+    getLanguageAddForm(req, res) {
+        res.render('addLanguage');
     }
 
     // POST: Créer une nouvelle langue
@@ -29,7 +35,7 @@ class LanguagesController {
             famille
         };
         this.languages.push(newLanguage);
-        res.json(newLanguage);
+        res.render('languages', { languages: this.languages });
     }
 
     // PUT: Mettre à jour une langue par ID

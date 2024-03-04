@@ -1,25 +1,25 @@
 import express from 'express';
 import languageRouter from './languages/languages.js';
 
-const app = express()
-const port = 8000
+import path from 'node:path';
+import process from 'node:process';
+
+const app = express();
+const port = 8000;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 
-app.use(express.json())
-app.use(express.urlencoded({
-    extended: false
-}))
-
-app.listen(port, () => {
-    console.log('Bienvenue.')
-})
+app.set('view engine', 'ejs');
+app.set('views', path.join(process.cwd(), 'views'));
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+    res.render('home');
+});
 
-app.get('/test', (req, res) => {
-    res.send('Hello Test!')
-})
+app.use('/', languageRouter);
 
-app.use('/', languageRouter)
+app.listen(port, () => {
+    console.log('Bienvenue.');
+});

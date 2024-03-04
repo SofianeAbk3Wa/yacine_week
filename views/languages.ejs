@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="List of languages">
+    <meta name="keywords" content="home page">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Language List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .return-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .return-btn:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Language List:</h1>
+        <ul>
+            <% if (languages && languages.length> 0) { %>
+                <% languages.forEach(language=> { %>
+                    <li>
+                        <strong>Name:</strong>
+                        <%= language.name %><br>
+                            <strong>Famille:</strong>
+                            <%= language.famille %>
+                    </li>
+                    <% }); %>
+                        <% } else { %>
+                            <li>No languages found</li>
+                            <% } %>
+        </ul>
+        <a href="/" class="return-btn">Return</a>
+    </div>
+</body>
+
+</html>
