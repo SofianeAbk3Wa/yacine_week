@@ -1,12 +1,19 @@
-## Instructions
-
-1. **Tout les projets seront dans des branches différentes au sein de ce même repository.**.
+## Tout les projets seront dans des branches différentes au sein de ce même repository.**.
 
 
-2. **Pour installer les packages** :
+
+## EXERCICE 1 ->  Utiliser 'chalk' pour display des noms colorés
+
+## EXERCICE 2 ->  Création serveur HTTP / Requête avec 'axios' + écriture fichier avec 'fs'
+
+## EXERCICE 3 ->  Création serveur Express.js / CRUD thème "langues" (française, etc..)
+
+
+
+ **Pour installer les packages** :
 
    npm install
 
-3. **Pour lancer le projet (avec nodemon)** :
+ **Pour lancer le projet (avec nodemon)** :
 
    npm run dev
