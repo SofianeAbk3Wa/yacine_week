@@ -16,7 +16,7 @@ server.listen(PORT, () => {
 
 axios.get(`http://google.com/`)
     .then(response => {
-        fs.writeFile('google_com.html', response.data, (err) => {
+        fs.writeFile('google.html', response.data, (err) => {
             if (err) throw err;
             console.log('The HTML file has been saved!');
         });
