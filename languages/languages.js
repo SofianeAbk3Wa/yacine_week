@@ -14,12 +14,14 @@ languagesRouter
     .get('/langues', (req, res) => {
         res.json(languages);
     })
+
     // GET: Récupérer une langue par ID
     .get('/langues/:id', (req, res) => {
         let { id } = req.params;
         const langue = languages.find(langue => langue.id === parseInt(id));
         res.json(langue);
     })
+
     // POST: Créer une nouvelle langue
     .post('/langues', (req, res) => {
         const langue = {
@@ -30,6 +32,7 @@ languagesRouter
         languages.push(langue);
         res.json(langue);
     })
+
     // PUT: Mettre à jour une langue par ID
     .put('/langues/:id', (req, res) => {
         let { id } = req.params;
@@ -38,6 +41,7 @@ languagesRouter
         langue.famille = req.body.famille;
         res.json(langue);
     })
+
     // DELETE: Supprimer une langue par ID
     .delete('/langues/:id', (req, res) => {
         let { id } = req.params;
