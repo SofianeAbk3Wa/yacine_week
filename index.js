@@ -16,13 +16,13 @@ server.listen(PORT, () => {
 
 axios.get('http://localhost:8000/')
     .then(response => {
-        fs.writeFile('google.html', response.data, (err) => {
+        fs.writeFile('localhost.html', response.data, (err) => {
             if (err) throw err;
             console.log('The HTML file has been saved!');
         });
     })
     .catch(error => {
-        console.log('Error fetching Google:', error);
+        console.log('Error fetching Localhost:', error);
     });
 
 
