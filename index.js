@@ -14,7 +14,7 @@ server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
 
-axios.get('http://localhost:8000/')
+axios.get(`http://localhost:${PORT}/`)
     .then(response => {
         fs.writeFile('localhost.html', response.data, (err) => {
             if (err) throw err;
