@@ -1,81 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Add new Language">
-    <meta name="keywords" content="add, new">
+    <meta name="description" content="Ajouter une nouvelle langue">
+    <meta name="keywords" content="ajouter, nouvelle">
     <link rel="stylesheet" href="style.css">
 
-    <title>Add New Language</title>
+    <title>Ajouter une nouvelle langue</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
 
-        form {
-            width: 80%;
-            max-width: 600px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            background-color: #4caf50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        ::placeholder {
-            color: #ccc;
-        }
-
-        .return-btn {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .return-btn:hover {
-            color: #0056b3;
-        }
     </style>
 </head>
 
 <body>
-    <form action="/languages" method="post">
-        <input type="text" name="name" placeholder="Enter language name (e.g., English)">
-        <input type="text" name="family" placeholder="Enter language family (e.g., Germanic)">
-        <input type="submit" value="Add">
-    </form>
-    <a href="/" class="return-btn">Return</a>
+    <div class="container">
+        <form name="languageForm" action="/languages" method="post" onsubmit="return validerFormulaire()">
+            <input type="text" name="name" placeholder="Entrez le nom de la langue (par exemple, anglais)">
+            <input type="text" name="famille" placeholder="Entrez la famille de la langue (par exemple, germanique)">
+            <input type="submit" value="Ajouter">
+        </form>
+        <a href="/" class="return-btn">Retour</a>
+    </div>
+
+    <script defer>
+        function validerFormulaire() {
+            var nom = document.forms.languageForm.name.value;
+            var famille = document.forms.languageForm.famille.value;
+
+            if (nom.trim() === "" || famille.trim() === "") {
+                alert("Veuillez remplir tous les champs");
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html>
