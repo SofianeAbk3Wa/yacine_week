@@ -9,21 +9,18 @@ const languages = [
     { id: 4, name: 'Allemand', famille: 'Germanique' }
 ];
 
-// GET: Récupérer toutes les langues
-// GET: Récupérer une langue par ID
-// POST: Créer une nouvelle langue
-// PUT: Mettre à jour une langue par ID
-// DELETE: Supprimer une langue par ID
-
 languagesRouter
+    // GET: Récupérer toutes les langues
     .get('/langues', (req, res) => {
         res.json(languages);
     })
+    // GET: Récupérer une langue par ID
     .get('/langues/:id', (req, res) => {
         let { id } = req.params;
         const langue = languages.find(langue => langue.id === parseInt(id));
         res.json(langue);
     })
+    // POST: Créer une nouvelle langue
     .post('/langues', (req, res) => {
         const langue = {
             id: languages.length + 1,
@@ -33,6 +30,7 @@ languagesRouter
         languages.push(langue);
         res.json(langue);
     })
+    // PUT: Mettre à jour une langue par ID
     .put('/langues/:id', (req, res) => {
         let { id } = req.params;
         const langue = languages.find(langue => langue.id === parseInt(id));
@@ -40,6 +38,7 @@ languagesRouter
         langue.famille = req.body.famille;
         res.json(langue);
     })
+    // DELETE: Supprimer une langue par ID
     .delete('/langues/:id', (req, res) => {
         let { id } = req.params;
         const langue = languages.find(langue => langue.id === parseInt(id));
