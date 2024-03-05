@@ -3,32 +3,98 @@ import User from '../models/user.js';
 
 const userRouter = express.Router();
 
+//? --------------------------------------------------------------------------------
+//? GET ALL
+//? --------------------------------------------------------------------------------
+
 userRouter.get('/users', async (req, res) => {
     try {
         const users = await User.find();
-        res.json(users);
-    } catch (err) {
-        console.log(err.message);
+
+        //! FIND BUT EMPTY
+        if (users.length === 0) return res.json({ message: 'Aucun utilisateur existant.' });
+
+        //* SUCCESS
+        return res.json(users);
+
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
 });
+
+
+//? --------------------------------------------------------------------------------
+//? GET BY ID
+//? --------------------------------------------------------------------------------
 
 userRouter.get('/users/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const user = await User.findById(id);
-        res.json(user);
-    } catch (err) {
-        console.log(err.message);
+
+        //! NOT FIND
+        if (!user) return res.json({ message: 'Utilisateur non existant.' });
+
+        //* SUCCESS
+        return res.json(user);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
 });
 
+//? --------------------------------------------------------------------------------
+//? CREATE AN USER
+//? --------------------------------------------------------------------------------
 
 userRouter.post('/users', async (req, res) => {
     try {
         const newUser = await User.create(req.body);
-        res.json(newUser);
-    } catch (err) {
-        console.log(err.message);
+
+        //! NOT FIND
+        if (!newUser) return res.json({ message: 'Un problème est survenu, veuillez reessayer. [CHAMPS: first_name, last_name, email, password]' });
+
+        //* SUCCESS
+        return res.json(newUser);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
+
+//? --------------------------------------------------------------------------------
+//? UPDATE AN USER
+//? --------------------------------------------------------------------------------
+
+userRouter.put('/users/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+
+        //! NOT FIND
+        if (!updatedUser) return res.json({ message: 'Utilisateur non existant.' });
+
+        //* SUCCESS
+        return res.json(updatedUser);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+});
+
+//? --------------------------------------------------------------------------------
+//? DELETE AN USER
+//? --------------------------------------------------------------------------------
+
+userRouter.delete('/users/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const deletedUser = await User.findByIdAndDelete(id);
+
+        //! NOT FIND
+        if (!deletedUser) return res.json({ message: 'Utilisateur non existant.' });
+
+        //* SUCCESS
+        return res.json({ message: 'Utilisateur supprimé.', deletedUser });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
 });
 

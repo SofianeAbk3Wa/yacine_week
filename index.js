@@ -1,27 +1,25 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
-import routes from './routes/index.js'
+import express, { urlencoded, json } from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import process from 'node:process';
+import routes from './routes/index.js';
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
-const mongoDB = process.env.MONGO_URI
+const { PORT, MONGO_URI } = process.env;
 
 // Middleware
-app.use(
-    express.urlencoded({ extended: true }),
-    express.json()
-);
+app.use(urlencoded({ extended: true }));
+app.use(json());
 
 // MongoDB connection
-mongoose.connect(mongoDB)
-    .then(() =>   console.log('Connexion à MongoDB réussie !'))
+mongoose.connect(MONGO_URI)
+    .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(err => console.error('Erreur de connexion à MongoDB:', err));
 
 // Routes
 app.use('/', routes);
 
 // Start server
-app.listen(port, () => console.log(`Le serveur fonctionne sur http://localhost:${port}`));
+app.listen(PORT, () => console.log(`Le serveur fonctionne sur http://localhost:${PORT}`));
