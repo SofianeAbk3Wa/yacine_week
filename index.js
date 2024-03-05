@@ -10,7 +10,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 const mongoDB ='mongodb+srv://admin:lI7VTtMkrTaDPejk@yacine-week.rwnonkm.mongodb.net/?retryWrites=true&w=majority&appName=yacine-week';
 
-app.use(bodyParser.urlencoded({ extended: true })).use(express.json()).use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
+
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));
 
 mongoose.connect(mongoDB)
