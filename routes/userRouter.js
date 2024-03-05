@@ -9,7 +9,6 @@ userRouter.get('/users', async (req, res) => {
         res.json(users);
     } catch (err) {
         console.log(err.message);
-        res.status(500).send('Erreur serveur');
     }
 });
 
@@ -30,7 +29,6 @@ userRouter.post('/users', async (req, res) => {
         res.json(newUser);
     } catch (err) {
         console.log(err.message);
-        res.status(500).send('Erreur serveur');
     }
 });
 
