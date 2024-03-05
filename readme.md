@@ -7,6 +7,9 @@
 ## EXERCICE 2 ->  Création serveur HTTP / Requête avec 'axios' + écriture fichier avec 'fs'
 
 ## EXERCICE 3 ->  Création serveur Express.js / CRUD thème "langues" (française, etc..)
+## EXERCICE 4 ->  + INTERFACE VUE .ejs
+
+## EXERCICE 5 ->  Mangoose
 
 
 
