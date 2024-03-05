@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const mongoDB ='mongodb+srv://admin:lI7VTtMkrTaDPejk@yacine-week.rwnonkm.mongodb.net/?retryWrites=true&w=majority&appName=yacine-week';
+const mongoDB = process.env.MONGO_DB
 
 // Middleware
 app.use(
@@ -26,4 +26,4 @@ mongoose.connect(mongoDB)
 app.use('/', routes);
 
 // Start server
-app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));s
+app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));
