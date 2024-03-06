@@ -1,17 +1,20 @@
 import express, { urlencoded, json } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import process from 'node:process';
 import routes from './routes/index.js';
 
 dotenv.config();
 
+// App Config
 const app = express();
 const { PORT, MONGO_URI } = process.env;
 
 // Middleware
 app.use(urlencoded({ extended: true }));
 app.use(json());
+app.use(cors());
 
 // MongoDB connection
 mongoose.connect(MONGO_URI)
