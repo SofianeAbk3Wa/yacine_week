@@ -32,12 +32,11 @@ app.use(cors());
 //?  ROUTES
 //? --------------------------------------------------------------------------------
 
-app.use('/', userRouter, postRouter, authRouter);
-
 app.get('/', authMiddleware, (req, res) => {
     res.send('INDEX ROUTE');
 });
 
+app.use('/', userRouter, postRouter, authRouter);
 
 //? --------------------------------------------------------------------------------
 //? CONNECTION TO MONGODB
