@@ -1,10 +1,11 @@
 import express from 'express';
+
 import User from '../models/user.js';
 
 const userRouter = express.Router();
 
 //? --------------------------------------------------------------------------------
-//? GET ALL
+//? GET ALL USERS
 //? --------------------------------------------------------------------------------
 
 userRouter.get('/users', async (req, res) => {
@@ -14,17 +15,16 @@ userRouter.get('/users', async (req, res) => {
         //! FIND BUT EMPTY
         if (users.length === 0) return res.json({ message: 'Aucun utilisateur existant.' });
 
-        //* SUCCESS
         return res.json(users);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
 
 //? --------------------------------------------------------------------------------
-//? GET BY ID
+//? GET BY ID USER
 //? --------------------------------------------------------------------------------
 
 userRouter.get('/users/:id', async (req, res) => {
@@ -35,11 +35,10 @@ userRouter.get('/users/:id', async (req, res) => {
         //! NOT FIND
         if (!user) return res.json({ message: 'Utilisateur non existant.' });
 
-        //* SUCCESS
         return res.json(user);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
@@ -56,14 +55,13 @@ userRouter.post('/users', async (req, res) => {
             password: req.body.password
         });
 
-        //! NOT FIND
+        //! EMPTY FIELD
         if (!newUser) return res.json({ message: 'Un problème est survenu, veuillez reessayer. [CHAMPS: first_name, last_name, email, password]' });
 
-        //* SUCCESS
         return res.json(newUser);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
@@ -85,11 +83,10 @@ userRouter.put('/users/:id', async (req, res) => {
         //! NOT FIND
         if (!updatedUser) return res.json({ message: 'Utilisateur non existant.' });
 
-        //* SUCCESS
         return res.json(updatedUser);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
@@ -110,7 +107,7 @@ userRouter.delete('/users/:id', async (req, res) => {
         return res.json({ message: 'Utilisateur supprimé.', deletedUser });
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 

@@ -3,13 +3,16 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import process from 'node:process';
-import routes from './routes/index.js';
+import userRouter from './routes/userRouter.js';
+import postRouter from './routes/postRouter.js';
+import authRouter from './routes/authRouter.js';
 
 dotenv.config();
 
 // App Config
 const app = express();
 const { PORT, MONGO_URI } = process.env;
+const router = express.Router();
 
 // Middleware
 app.use(urlencoded({ extended: true }));
@@ -22,7 +25,13 @@ mongoose.connect(MONGO_URI)
     .catch(err => console.error('Erreur de connexion à MongoDB:', err));
 
 // Routes
-app.use('/', routes);
+router.get('/', (req, res) => {
+    res.send('INDEX ROUTE');
+});
+
+app.use('/', userRouter, postRouter, authRouter);
 
 // Start server
 app.listen(PORT, () => console.log(`Le serveur fonctionne sur http://localhost:${PORT}`));
+
+export default router;

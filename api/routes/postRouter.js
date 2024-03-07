@@ -1,4 +1,5 @@
 import express from 'express';
+
 import Post from '../models/post.js';
 
 const postRouter = express.Router();
@@ -14,11 +15,10 @@ postRouter.get('/posts', async (req, res) => {
         //! NOT FIND BUT EMPTY
         if (posts.length === 0) return res.json({ message: 'Aucun post existant.' });
 
-        //* SUCCESS
         return res.json(posts);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
@@ -34,11 +34,10 @@ postRouter.get('/posts/:id', async (req, res) => {
         //! NOT FIND
         if (!post) return res.json({ message: 'Post non existant.' });
 
-        //* SUCCESS
         return res.json(post);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
@@ -50,12 +49,10 @@ postRouter.post('/posts', async (req, res) => {
     try {
         const newPost = await Post.create(req.body);
 
-
-        //* SUCCESS
-        return res.status(201).json(newPost);
+        return res.json(newPost);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
@@ -71,11 +68,10 @@ postRouter.put('/posts/:id', async (req, res) => {
         //! NOT FIND
         if (!updatedPost) return res.json({ message: 'Post non existant.' });
 
-        //* SUCCESS
         return res.json(updatedPost);
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
@@ -91,11 +87,10 @@ postRouter.delete('/posts/:id', async (req, res) => {
         //! NOT FIND
         if (!deletedPost) return res.json({ message: 'Post non existant.' });
 
-        //* SUCCESS
         return res.json({ message: 'Post supprimé.', deletedPost });
 
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.json({ error: error.message });
     }
 });
 
