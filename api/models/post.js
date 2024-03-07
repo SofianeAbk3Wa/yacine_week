@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 
 const { Schema, model } = mongoose;
 
+//? --------------------------------------------------------------------------------
+//? POST MODEL SCHEMA
+//? --------------------------------------------------------------------------------
 const postSchema = new Schema({
     title: {
         type: String,

@@ -47,7 +47,14 @@ postRouter.get('/posts/:id', async (req, res) => {
 
 postRouter.post('/posts', async (req, res) => {
     try {
-        const newPost = await Post.create(req.body);
+        const newPost = await Post.create({
+            title: req.body.title,
+            content: req.body.content,
+            author: req.body.author
+        });
+
+        //! EMPTY FIELD
+        if (!newPost) return res.json({ message: 'Un problème est survenu, veuillez reessayer. [CHAMPS: title, content, author]' });
 
         return res.json(newPost);
 
