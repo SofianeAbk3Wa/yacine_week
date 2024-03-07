@@ -2,23 +2,28 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Navbar() {
-  const [email, setEmail] = useState(''); //? État local pour l'e-mail
-  const [password, setPassword] = useState(''); //? État local pour le mot de passe
-  const [isLoggedIn, setIsLoggedIn] = useState(false); //? État local pour suivre l'état de connexion
-  const [userFirstName, setUserFirstName] = useState(''); //? État local pour stocker le prénom de l'utilisateur connecté
 
+  //? VARIABLES D'ETAT
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userFirstName, setUserFirstName] = useState('');
+
+  //? FONCTION DE CONNEXION
   const handleLogin = async () => {
     try {
+      //? ENVOYER LA REQUETE AVEC PARAMS DE : onChange={(e) => setEmail(e.target.value)} & password
       const response = await axios.post('http://localhost:8000/login', { email, password });
 
       if (response.data.token) {
-        setIsLoggedIn(true); //? Définir l'état de connexion sur true
-        setUserFirstName(response.data.first_name); //? Stocker le prénom de l'utilisateur connecté
+        //? ETAT CONNCTÉ
+        setIsLoggedIn(true);
+        setUserFirstName(response.data.first_name); //? Stocker le prénom de l'utilisateur connecté pour la renvoyer dans l'affichage
       } else {
-        console.error('La connexion a échoué :', response.data.message); //? Afficher un message d'erreur si la connexion échoue
+        console.error('La connexion a échoué :', response.data.message);
       }
     } catch (error) {
-      console.error('Erreur de connexion :', error); //? Afficher une erreur en cas d'échec de la requête
+      console.error('Erreur de connexion :', error);
     }
   };
 
