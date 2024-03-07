@@ -32,11 +32,18 @@ app.use(cors());
 //?  ROUTES
 //? --------------------------------------------------------------------------------
 
-app.get('/admin', authMiddleware, (req, res) => {
-    res.send('INDEX ROUTE');
-});
+//!* -------------  NO AUTH
 
-app.use('/', userRouter, postRouter, authRouter);
+app.get('/', (req, res) => {
+    res.send('Welcome to index!');
+})
+
+app.use('/', authRouter); //? Login + Register page
+
+//! -------------  AUTH NEEDED
+
+app.use('/',   userRouter);
+app.use('/', authMiddleware, postRouter);
 
 //? --------------------------------------------------------------------------------
 //? CONNECTION TO MONGODB
