@@ -21,7 +21,7 @@ const app = express();
 const { PORT, MONGO_URI } = process.env;
 
 //? --------------------------------------------------------------------------------
-//? MIDDLEWARE
+//? INIT MIDDLEWARE
 //? --------------------------------------------------------------------------------
 
 app.use(urlencoded({ extended: true }));
