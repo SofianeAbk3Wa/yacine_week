@@ -19,14 +19,15 @@ authRouter.post('/register', async (req, res) => {
       //? CHECK EMAIL
       const emailVerification = await User.findOne({ email: email });
 
-      //? SALT + HASH PASSWORD
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
-
-      //! EMAIL ALREADY FIND
-      if (emailVerification) {
+       //! EMAIL ALREADY FIND
+       if (emailVerification) {
         return res.json({ message: 'Email existe déjà' });
       }
+
+      //? SALT + HASH PASSWORD
+      const salt = await bcrypt.genSalt(10);
+
+      const hashedPassword = await bcrypt.hash(password, salt);
 
       //* SUCCESS => CREATE_USER
       const newUser = await User.create({
@@ -62,7 +63,6 @@ authRouter.post('/login', async (req, res) => {
 
       //* SUCCESS => CHECK_PASSWORD
       const passwordMatch = await bcrypt.compare(password, user.password);
-      console.log('passwordMatch: ' + passwordMatch);
 
       //! PASSWORD NOT MATCH
       if (!passwordMatch) {

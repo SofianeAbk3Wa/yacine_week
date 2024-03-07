@@ -3,9 +3,13 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+// ROUTES
 import userRouter from './routes/userRouter.js';
 import postRouter from './routes/postRouter.js';
 import authRouter from './routes/authRouter.js';
+
+// MIDDLEWARE
+import authMiddleware from './middlewares/authMiddleware.js';
 
 //? --------------------------------------------------------------------------------
 //? INITIALISATION
@@ -30,7 +34,7 @@ app.use(cors());
 
 app.use('/', userRouter, postRouter, authRouter);
 
-app.get('/', (req, res) => {
+app.get('/', authMiddleware, (req, res) => {
     res.send('INDEX ROUTE');
 });
 
@@ -49,5 +53,3 @@ mongoose.connect(MONGO_URI)
 //? --------------------------------------------------------------------------------
 
 app.listen(PORT, () => console.log(`Le serveur fonctionne sur http://localhost:${PORT}`));
-
-export default router;
