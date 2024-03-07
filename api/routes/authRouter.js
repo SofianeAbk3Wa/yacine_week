@@ -6,12 +6,15 @@ import User from '../models/user.js';
 
 const authRouter = express.Router();
 
-
 //? --------------------------------------------------------------------------------
 //? REGISTER
 //? --------------------------------------------------------------------------------
+
 authRouter.post('/register', async (req, res) => {
+
+    //? RECEIVE DATA
     const { first_name, last_name, email, password } = req.body;
+
     try {
       //? CHECK EMAIL
       const emailVerification = await User.findOne({ email: email });
@@ -39,11 +42,13 @@ authRouter.post('/register', async (req, res) => {
     }
 });
 
-
 //? --------------------------------------------------------------------------------
 //? LOGIN
 //? --------------------------------------------------------------------------------
+
 authRouter.post('/login', async (req, res) => {
+
+  //? RECEIVE DATA
   const { email, password } = req.body;
 
   try {
