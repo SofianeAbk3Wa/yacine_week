@@ -32,7 +32,7 @@ app.use(cors());
 //?  ROUTES
 //? --------------------------------------------------------------------------------
 
-app.get('/', authMiddleware, (req, res) => {
+app.get('/admin', authMiddleware, (req, res) => {
     res.send('INDEX ROUTE');
 });
 

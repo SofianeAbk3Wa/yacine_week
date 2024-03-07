@@ -53,29 +53,29 @@ authRouter.post('/login', async (req, res) => {
 
   try {
     //? CHECK EMAIL
-      const user = await User.findOne({ email });
+    const user = await User.findOne({ email });
 
-      //! EMAIL NOT EXIST
-      if (!user) {
-          return res.json({ message: 'Email ou mot de passe incorrect' });
-      }
+    //! EMAIL NOT EXIST
+    if (!user) {
+      return res.json({ message: 'Email ou mot de passe incorrect' });
+    }
 
-      //* SUCCESS => CHECK_PASSWORD
-      const passwordMatch = await bcrypt.compare(password, user.password);
+    //* SUCCESS => CHECK_PASSWORD
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
-      //! PASSWORD NOT MATCH
-      if (!passwordMatch) {
-          return res.json({ message: 'Email ou mot de passe incorrect' });
-      }
+    //! PASSWORD NOT MATCH
+    if (!passwordMatch) {
+      return res.json({ message: 'Email ou mot de passe incorrect' });
+    }
 
-      //* SUCCESS => CREATE_TOKEN + SEND_TOKEN_HEADER
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-      res.header('auth-token', token);
+    //* SUCCESS => CREATE_TOKEN + SEND_TOKEN_HEADER
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-      return res.json({ message: 'Connexion réussie', token });
+    // Send token + First_name
+    return res.json({ message: 'Connexion réussie', token, first_name: user.first_name });
 
   } catch (error) {
-      return res.json({ error: error.message });
+    return res.json({ error: error.message });
   }
 });
 

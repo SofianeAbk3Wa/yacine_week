@@ -1,22 +1,17 @@
-## Tout les projets seront dans des branches différentes au sein de ce même repository.**.
+# Guide d'installation et de démarrage
 
+## Configuration Dossier 'API'
 
+1. Copiez le fichier '.env.example' en tant que '.env' et suivre les instructions
 
-## EXERCICE 1 ->  Utiliser 'chalk' pour display des noms colorés
+2. Installez les dépendances : npm install
 
-## EXERCICE 2 ->  Création serveur HTTP / Requête avec 'axios' + écriture fichier avec 'fs'
+3. Lancer serveur API : npm start
 
-## EXERCICE 3 ->  Création serveur Express.js / CRUD thème "langues" (française, etc..)
-## EXERCICE 4 ->  + INTERFACE VUE .ejs
+## Configuration Dossier 'frontend'
 
-## Mangoose   ->
+1. Aller dans '/react-project'
 
+2. Installez les dépendances : npm install
 
-
- **Pour installer les packages** :
-
-   npm install
-
- **Pour lancer le projet (avec nodemon)** :
-
-   npm run dev
+3. Lancer serveur Frontend : npm run dev
