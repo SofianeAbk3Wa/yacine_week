@@ -27,7 +27,7 @@ userRouter.get('/users', async (req, res) => {
 //? GET BY ID USER
 //? --------------------------------------------------------------------------------
 
-userRouter.get('/users/:id', async (req, res) => {
+userRouter.get('/users/edit/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const user = await User.findById(id);
@@ -46,7 +46,7 @@ userRouter.get('/users/:id', async (req, res) => {
 //? CREATE AN USER
 //? --------------------------------------------------------------------------------
 
-userRouter.post('/users', async (req, res) => {
+userRouter.post('/users/add', async (req, res) => {
     try {
         const newUser = await User.create({
             first_name: req.body.first_name,
@@ -70,7 +70,7 @@ userRouter.post('/users', async (req, res) => {
 //? UPDATE AN USER
 //? --------------------------------------------------------------------------------
 
-userRouter.put('/users/:id', async (req, res) => {
+userRouter.put('/users/edit/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedUser = await User.findByIdAndUpdate(id, {
@@ -95,7 +95,7 @@ userRouter.put('/users/:id', async (req, res) => {
 //? DELETE AN USER
 //? --------------------------------------------------------------------------------
 
-userRouter.delete('/users/:id', async (req, res) => {
+userRouter.delete('/users/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const deletedUser = await User.findByIdAndDelete(id);

@@ -45,7 +45,7 @@ postRouter.get('/posts/:id', async (req, res) => {
 //? CREATE A POST
 //? --------------------------------------------------------------------------------
 
-postRouter.post('/posts', async (req, res) => {
+postRouter.post('/posts/add', async (req, res) => {
     try {
         const newPost = await Post.create({
             title: req.body.title,
@@ -67,7 +67,7 @@ postRouter.post('/posts', async (req, res) => {
 //? UPDATE A POST
 //? --------------------------------------------------------------------------------
 
-postRouter.put('/posts/:id', async (req, res) => {
+postRouter.put('/posts/edit/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedPost = await Post.findByIdAndUpdate(id, req.body, { new: true });
@@ -86,7 +86,7 @@ postRouter.put('/posts/:id', async (req, res) => {
 //? DELETE A POST
 //? ------------------------------------------------------------------------------
 
-postRouter.delete('/posts/:id', async (req, res) => {
+postRouter.delete('/posts/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const deletedPost = await Post.findByIdAndDelete(id);

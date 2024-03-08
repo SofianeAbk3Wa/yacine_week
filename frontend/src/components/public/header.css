@@ -1,0 +1,50 @@
+header {
+    background-color: #f8f9fa;
+    padding: 10px 25px;
+    color: black;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+li {
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #007bff;
+}
+
+.connexion {
+    margin-right: 10px;
+}
+
+.deconnexion {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.deconnexion:hover {
+    background-color: #0056b3;
+}
